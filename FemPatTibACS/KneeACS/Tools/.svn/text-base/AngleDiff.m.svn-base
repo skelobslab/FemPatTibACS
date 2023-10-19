@@ -1,0 +1,4 @@
+function diff=AngleDiff(vector1,vector2)
+% calculates the angular difference between vector 1 and vector 2
+
+diff=real(acosd(dot(vector1,vector2)/(norm(vector1)*norm(vector2))));

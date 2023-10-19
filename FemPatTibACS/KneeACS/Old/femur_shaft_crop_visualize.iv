@@ -1,0 +1,62 @@
+#Inventor V2.0 ascii
+
+Separator {
+	Material {
+		diffuseColor	1 1 1
+		transparency	5.000000e-001
+	}
+	Transform {
+		translation	0 0 0
+		rotation	0 0 0 0
+	}
+	File {
+		name "P:\DMiranda\Code\knee_acs\femur.iv"
+	}
+}
+Separator {
+	Material {
+		diffuseColor	1 0 0
+		transparency	4.000000e-001
+	}
+	Transform {
+		translation	0 0 0
+		rotation	0 0 0 0
+	}
+	File {
+		name "P:\DMiranda\Code\knee_acs\femur_shaft_crop.iv"
+	}
+}
+Separator {
+	Transform {
+		translation	103.218 89.5113 -134.999
+		rotation	0.48071 -0.448335 0.753601 2.0879
+	}
+	File {
+		name "P:\TheCollective\IV_Files\ACS.iv"
+	}
+}
+Separator {
+	Transform {
+		translation	103.218 89.5113 -134.999
+	}
+	Sphere {
+		radius 2
+	}
+}
+Separator {
+	Transform {
+		translation	103.218 89.5113 -132.565
+		rotation	-0.214684 0.10491 0.971033 1.77959
+	}
+	File {
+		name "P:\TheCollective\IV_Files\ACS.iv"
+	}
+}
+Separator {
+	Transform {
+		translation	103.218 89.5113 -132.565
+	}
+	Sphere {
+		radius 2
+	}
+}

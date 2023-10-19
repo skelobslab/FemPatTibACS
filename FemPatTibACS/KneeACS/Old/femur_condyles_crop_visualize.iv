@@ -1,0 +1,105 @@
+#Inventor V2.0 ascii
+
+Separator {
+	Material {
+		diffuseColor	1 1 1
+		transparency	4.000000e-001
+	}
+	Transform {
+		translation	0 0 0
+		rotation	0 0 0 0
+	}
+	File {
+		name "P:\DMiranda\Code\knee_acs\femur.iv"
+	}
+}
+Separator {
+	Material {
+		diffuseColor	1 0 0
+		transparency	0
+	}
+	Transform {
+		translation	0 0 0
+		rotation	0 0 0 0
+	}
+	File {
+		name "P:\DMiranda\Code\knee_acs\femur_condyles_crop.iv"
+	}
+}
+Separator {
+	Transform {
+		translation	103.218 89.5113 -134.999
+		rotation	0.48071 -0.448335 0.753601 2.0879
+	}
+	File {
+		name "P:\TheCollective\IV_Files\ACS.iv"
+	}
+}
+Separator {
+	Transform {
+		translation	94.9029 108.445 -80.7509
+		rotation	0.389384 -0.53035 0.753066 1.88912
+	}
+	File {
+		name "P:\TheCollective\IV_Files\ACS.iv"
+	}
+}
+Separator {
+	Transform {
+		translation	107.803 58.148 -181.406
+		rotation	-0.704022 0.57746 0.413393 2.42935
+	}
+	File {
+		name "P:\TheCollective\IV_Files\ACS.iv"
+	}
+}
+Separator {
+	Transform {
+		translation	105.143 93.121 -155.212
+		rotation	-0.713902 0.656191 0.244455 2.7274
+	}
+	File {
+		name "P:\TheCollective\IV_Files\ACS.iv"
+	}
+}
+Separator {
+	Transform {
+		translation	105.143 93.121 -155.212
+		rotation	-0.715173 0.651834 0.252269 2.74548
+	}
+	File {
+		name "P:\TheCollective\IV_Files\ACS.iv"
+	}
+}
+Separator {
+	Transform {
+		translation	107.803 58.148 -181.406
+	}
+	Sphere {
+		radius 2
+	}
+}
+Separator {
+	Transform {
+		translation	105.143 93.121 -155.212
+	}
+	Sphere {
+		radius 2
+	}
+}
+Separator {
+	Transform {
+		translation	103.218 89.5113 -134.999
+	}
+	Sphere {
+		radius 2
+	}
+}
+Separator {
+	Transform {
+		translation	94.9029 108.445 -80.7509
+	}
+	Sphere {
+		radius 2
+	}
+}

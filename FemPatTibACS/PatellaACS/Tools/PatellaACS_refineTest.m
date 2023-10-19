@@ -1,0 +1,117 @@
+subjects = {'3976','4147','5043','5519','6221','6580','7004','7497','8436','9446'};
+sides = {'R','L','R','R','L','L','L','R','L','L'};
+
+% for s = 1:length(subjects)
+    
+   %band width
+bw = 6;
+offset = -3;
+
+ivstring = createInventorHeader();
+ivdir = 'P:\Patella\PatellaACS\models_processed';
+pT = createInventorHeader();
+pTR = createInventorHeader();
+pTB = createInventorHeader();
+
+s = 3;
+subject = ['XJUC0' subjects{s}];
+ivFile = [subject '_Pat.iv'];
+
+patT = patellaACS(ivdir,ivFile,'L');
+patTR = patellaACSRefine(ivdir,ivFile,patT,'L');
+
+[pts cnt] = read_vrml_fast(fullfile(ivdir,ivFile));
+
+
+ptsL = RT_transform(pts,patTR(1:3,1:3),patTR(1:3,4)',0);
+
+I = find(ptsL(:,2) < 0 & abs(ptsL(:,1)+offset) < bw);
+ptsLc = ptsL(I,:); 
+
+Ilow = find(ptsLc(:,3) < 0);
+ptsLcL = ptsLc(Ilow,:);
+Ihigh = find(ptsLc(:,3) > 0);
+ptsLcH = ptsLc(Ihigh,:);
+
+[ymin Ill] = min(ptsLcL(:,2));
+[yhigh Ihh] = min(ptsLcH(:,2));
+
+
+ymin = ptsLcL(Ill,3);
+yhigh = ptsLcH(Ihh,3);
+
+ymin = apex_cutoff(ivdir,ivFile,'L',patTR);
+
+I = find(ptsL(:,2) < 0 & abs(ptsL(:,1)+offset) < bw & ptsL(:,3) > ymin+2 & ptsL(:,3) < yhigh -1);
+
+ptsL = ptsL(I,:);
+inc = 1;
+[y Im] = min(ptsL(:,3));
+
+stripI = find(ptsL(:,3) > y - inc & ptsL(:,3) < y + inc);
+stripPts = ptsL(stripI,:);
+cc = 1;
+
+while max(stripPts(:,3)) < max(ptsL(:,3))
+
+stripI = find(ptsL(:,3) > y - inc & ptsL(:,3) < y + inc);
+stripPts = ptsL(stripI,:);
+
+p = polyfit(stripPts(:,1),stripPts(:,2),6);
+x = linspace(min(stripPts(:,1)), max(stripPts(:,1)),100);
+yyy = polyval(p,x);
+[kkk Ipk] = findpeaks(-yyy);
+
+localPK = [x(Ipk) yyy(Ipk) mean(stripPts(:,3))];
+
+PkOut(cc,:) = localPK;
+
+y = y + inc;
+cc = cc + 1;
+%pause
+end %while
+
+ptsG = RT_transform(ptsL,patTR(1:3,1:3),patTR(1:3,4)',1);
+pkOutG = RT_transform(PkOut,patTR(1:3,1:3),patTR(1:3,4)',1);
+
+p = polyfit(PkOut(:,3), PkOut(:,1),1);
+
+rvec = unit([polyval(p,10) 10] - [polyval(p,0) 0]);
+ang = rad2deg(acos(dot(rvec,[0 1])))
+
+rot = cross([0 0 1], [rvec(1) 0 rvec(2)]);
+
+% scatter(ptsL(I,3),ptsL(I,2));
+
+for i = 1:length(ptsG)
+    ivstring = [ivstring createInventorSphere(ptsG(i,:),0.3,[0 0 1],0)];
+end %i
+
+for i = 1:length(pkOutG)
+    ivstring = [ivstring createInventorSphere(pkOutG(i,:),0.5,[0 1 0],0)];
+end %i
+
+clear pkOutG ptsG
+ivstring = [ivstring createInventorLink(fullfile(ivdir, ivFile),eye(3,3),zeros(1,3),[0.7 0.7 0.7], 0.2)];
+ivstring = [ivstring createInventorArrow(patTR(1:3,4)',patTR(1:3,1)',40,1.5,[1 0 0],0.0)];
+ivstring = [ivstring createInventorArrow(patTR(1:3,4)',patTR(1:3,2)',40,1.5,[0 1 0],0.0)];
+ivstring = [ivstring createInventorArrow(patTR(1:3,4)',patTR(1:3,3)',40,1.5,[0 0 1],0.0)];
+
+
+yrot = rotamaty(ang,'deg')
+
+if rot(2) > 0 
+    yrot = yrot';
+end
+patTR_y = patTR * yrot;
+
+ivstring = [ivstring createInventorArrow(patTR(1:3,4)',patTR_y(1:3,1)',45,1.0,[1 0 0],0.0)];
+ivstring = [ivstring createInventorArrow(patTR(1:3,4)',patTR_y(1:3,2)',45,1.0,[0 1 0],0.0)];
+ivstring = [ivstring createInventorArrow(patTR(1:3,4)',patTR_y(1:3,3)',45,1.0,[0 0 1],0.0)];
+
+fid = fopen('K:\Temp\acs_view.iv','w');
+fprintf(fid,ivstring);
+fclose(fid);
+
+% pause
+% end %s

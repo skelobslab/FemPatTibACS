@@ -1,0 +1,88 @@
+#Inventor V2.0 ascii
+
+Separator {
+	Material {
+		diffuseColor	1 1 1
+		transparency	5.000000e-001
+	}
+	Transform {
+		translation	0 0 0
+		rotation	0 0 0 0
+	}
+	File {
+		name "P:\DMiranda\Code\knee_acs\tibia.iv"
+	}
+}
+Separator {
+	Material {
+		diffuseColor	1 0 0
+		transparency	4.000000e-001
+	}
+	Transform {
+		translation	0 0 0
+		rotation	0 0 0 0
+	}
+	File {
+		name "P:\DMiranda\Code\knee_acs\tibia_plateau_crop.iv"
+	}
+}
+Separator {
+	Transform {
+		translation	63.4718 58.4263 -285.604
+		rotation	0.504646 -0.731005 0.459308 1.97721
+	}
+	File {
+		name "P:\TheCollective\IV_Files\ACS.iv"
+	}
+}
+Separator {
+	Transform {
+		translation	61.0922 56.682 -236.057
+		rotation	-0.0300647 -0.0317395 0.999044 3.11821
+	}
+	File {
+		name "P:\TheCollective\IV_Files\ACS.iv"
+	}
+}
+Separator {
+	Transform {
+		translation	60.3614 60.1029 -241.998
+		rotation	0.0468484 -0.0751252 0.996073 1.21685
+	}
+	File {
+		name "P:\TheCollective\IV_Files\ACS.iv"
+	}
+}
+Separator {
+	Transform {
+		translation	60.3614 60.1029 -241.998
+		rotation	-0.0300647 -0.0317395 0.999044 3.11821
+	}
+	File {
+		name "P:\TheCollective\IV_Files\ACS.iv"
+	}
+}
+Separator {
+	Transform {
+		translation	63.4718 58.4263 -285.604
+	}
+	Sphere {
+		radius 2
+	}
+}
+Separator {
+	Transform {
+		translation	60.3614 60.1029 -241.998
+	}
+	Sphere {
+		radius 2
+	}
+}
+Separator {
+	Transform {
+		translation	61.0922 56.682 -236.057
+	}
+	Sphere {
+		radius 2
+	}
+}
